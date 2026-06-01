@@ -1,16 +1,14 @@
 <?php
-$host = "localhost";
-$port = "5432";
-$dbname = "shs_db";
-$user = "postgres";
-$password = "nat2301";
 
-$conn = pg_connect("host=$host port=$port dbname=$dbname user=$user password=$password");
+$conn = pg_connect("
+host=dpg-d89q9r6q1p3s73dq3r5g-a
+port=5432
+dbname=shs_db_pi0o
+user=shs_db_pi0o_user
+password=yzkh72m7CokjMpnq2MlJ06Uh6xBJGw14
+");
 
 if (!$conn) {
-    die("❌ Connection failed: " . pg_last_error());
-} 
+    die("Database connection failed: " . pg_last_error());
+}
 ?>
-
-
-
