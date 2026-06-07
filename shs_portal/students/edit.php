@@ -1,5 +1,6 @@
 <?php
 ob_start(); // Start output buffering
+session_start();
 include('../header.php'); // include header/sidebar
 include('../db/connect.php');
 
