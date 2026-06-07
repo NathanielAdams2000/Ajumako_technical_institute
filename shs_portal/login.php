@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if (password_verify($password, $row['password'])) {
 
             // ✅ STORE SESSION DATA
-            $_SESSION['user_id'] = $row['user_id'];
+            $_SESSION['id'] = $row['id'];
             $_SESSION['user'] = $row['username'];
             $_SESSION['role'] = $row['role']; // admin or teacher
 
