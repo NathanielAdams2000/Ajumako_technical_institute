@@ -3,10 +3,10 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-$username = $_SESSION['user'];
+// SAFE SESSION ACCESS
+$username = $_SESSION['user'] ?? 'Guest';
 
 $currentPage = basename($_SERVER['PHP_SELF']);
-
 
 // 🔹 Convert filename to a readable title
 switch ($currentPage) {
