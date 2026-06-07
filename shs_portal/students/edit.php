@@ -22,6 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $phone = $_POST['phone'];
     $email = $_POST['email'];
 	$department_id = $_POST['department_id'];
+	$residence = $_POST['residence'];
 
     $parent_name = $_POST['parent_name'];
     $relationship = $_POST['relationship'];
@@ -38,21 +39,29 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Update student with or without photo
     if ($photo_data) {
         $photo_hex = bin2hex($photo_data);
-        $update_student = "UPDATE students SET 
-            first_name=$1, other_name=$2, last_name=$3, gender=$4, date_of_birth=$5,
-            class_id=$6, admission_date=$7, address=$8, phone=$9, email=$10,department_id =$11, photo=decode($12, 'hex')
-            WHERE student_id=$13";
-        $res_student = pg_query_params($conn, $update_student, [
-            $first_name, $other_name, $last_name, $gender, $dob, $class_id, $admission_date, $address, $phone, $email,$department_id, $photo_hex, $id
-        ]);
+       $update_student = "UPDATE students SET 
+    first_name=$1, other_name=$2, last_name=$3, gender=$4, date_of_birth=$5,
+    class_id=$6, admission_date=$7, address=$8, phone=$9, email=$10,
+    department_id=$11, residence=$12, photo=decode($13, 'hex')
+    WHERE student_id=$14";
+
+$res_student = pg_query_params($conn, $update_student, [
+    $first_name, $other_name, $last_name, $gender, $dob,
+    $class_id, $admission_date, $address, $phone, $email,
+    $department_id, $residence, $photo_hex, $id
+       ]);
     } else {
-        $update_student = "UPDATE students SET 
-            first_name=$1, other_name=$2, last_name=$3, gender=$4, date_of_birth=$5,
-            class_id=$6, admission_date=$7, address=$8, phone=$9, email=$10, department_id =$11
-            WHERE student_id=$12";
-        $res_student = pg_query_params($conn, $update_student, [
-            $first_name, $other_name, $last_name, $gender, $dob, $class_id, $admission_date, $address, $phone, $email,$department_id, $id
-        ]);
+       $update_student = "UPDATE students SET 
+    first_name=$1, other_name=$2, last_name=$3, gender=$4, date_of_birth=$5,
+    class_id=$6, admission_date=$7, address=$8, phone=$9, email=$10,
+    department_id=$11, residence=$12
+    WHERE student_id=$13";
+
+$res_student = pg_query_params($conn, $update_student, [
+    $first_name, $other_name, $last_name, $gender, $dob,
+    $class_id, $admission_date, $address, $phone, $email,
+    $department_id, $residence, $id
+							   ]);
     }
 
     // Update or insert parent info
