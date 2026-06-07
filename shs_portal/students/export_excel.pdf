@@ -1,0 +1,47 @@
+<?php
+require '../vendor/autoload.php';
+include('../db/connect.php');
+
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+
+$filter = "";
+
+if (!empty($_GET['department_id'])) {
+    $dept_id = $_GET['department_id'];
+    $filter = "WHERE s.department_id = $dept_id";
+}
+
+$query = "
+SELECT s.*, d.department_name, c.class_name
+FROM students s
+LEFT JOIN department d ON s.department_id = d.department_id
+LEFT JOIN classes c ON s.class_id = c.class_id
+$filter
+";
+
+$result = pg_query($conn, $query);
+
+$spreadsheet = new Spreadsheet();
+$sheet = $spreadsheet->getActiveSheet();
+
+$sheet->setCellValue('A1', 'Name');
+$sheet->setCellValue('B1', 'Class');
+$sheet->setCellValue('C1', 'Department');
+$sheet->setCellValue('D1', 'Phone');
+
+$rowNum = 2;
+
+while ($row = pg_fetch_assoc($result)) {
+    $sheet->setCellValue('A'.$rowNum, $row['first_name'].' '.$row['last_name']);
+    $sheet->setCellValue('B'.$rowNum, $row['class_name']);
+    $sheet->setCellValue('C'.$rowNum, $row['department_name']);
+    $sheet->setCellValue('D'.$rowNum, $row['phone']);
+    $rowNum++;
+}
+
+$writer = new Xlsx($spreadsheet);
+
+header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+header('Content-Disposition: attachment;filename="students.xlsx"');
+$writer->save('php://output');
