@@ -242,10 +242,19 @@ $student = pg_fetch_assoc($result);
     </select>
 </div>
 				
-				 <div class="col-md-8">
+				 <div class="col-md-6">
                     <label>Address</label>
                     <textarea name="address" class="form-control" rows="2"><?= htmlspecialchars($student['address']) ?></textarea>
                 </div>
+
+										<div class="col-md-6">
+    <label>Residence</label>
+    <select name="residence" class="form-select border" required>
+        <option value="">-- Select Residence --</option>
+        <option value="Day" <?= ($student['residence'] == 'Day') ? 'selected' : '' ?>>Day</option>
+        <option value="Boarding" <?= ($student['residence'] == 'Boarding') ? 'selected' : '' ?>>Boarding</option>
+    </select>
+</div>
             </div>
 
             <!-- 👨‍👩 Parent Info -->
@@ -278,19 +287,12 @@ $student = pg_fetch_assoc($result);
                                 <input type="email" name="parent_email" class="form-control"
                                        value="<?= htmlspecialchars($student['parent_email']) ?>">
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                 <label>Address</label>
                                 <textarea name="parent_address" class="form-control"
                                           rows="2"><?= htmlspecialchars($student['parent_address']) ?></textarea>
                             </div>
-							<div class="col-md-6">
-    <label>Residence</label>
-    <select name="residence" class="form-select border" required>
-        <option value="">-- Select Residence --</option>
-        <option value="Day" <?= ($student['residence'] == 'Day') ? 'selected' : '' ?>>Day</option>
-        <option value="Boarding" <?= ($student['residence'] == 'Boarding') ? 'selected' : '' ?>>Boarding</option>
-    </select>
-</div>
+	
                         </div>
                     </div>
                 </div>
