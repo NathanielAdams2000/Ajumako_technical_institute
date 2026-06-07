@@ -27,6 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $phone = $_POST['phone'];
     $email = $_POST['email'];
 	$department_id = $_POST['department_id'];
+	$residence = $_POST['residence'];
 
     // --- Handle Image Upload ---
     $photoData = null;
@@ -44,15 +45,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // --- Insert student ---
     if ($photoData) {
         $query = "INSERT INTO students 
-                  (first_name, other_name, last_name, gender, date_of_birth, class_id, admission_date, address, phone, email , department_id, photo)
-                  VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12) RETURNING student_id";
-        $params = [$fname, $oname, $lname, $gender, $dob, $class_id, $admission_date, $address, $phone, $email, $department_id, pg_escape_bytea($photoData)];
-    } else {
-        $query = "INSERT INTO students 
-                  (first_name, other_name, last_name, gender, date_of_birth, class_id, admission_date, address, phone, email,department_id)
-                  VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11) RETURNING student_id";
-        $params = [$fname, $oname, $lname, $gender, $dob, $class_id, $admission_date, $address, $phone, $email, $department_id];
-    }
+(first_name, other_name, last_name, gender, date_of_birth, class_id, admission_date, address, phone, email, department_id, residence, photo)
+VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13)
+RETURNING student_id";
+
+$params = [$fname, $oname, $lname, $gender, $dob, $class_id, $admission_date, $address, $phone, $email, $department_id, $residence, pg_escape_bytea($photoData)];
+	} else {
+       $query = "INSERT INTO students 
+(first_name, other_name, last_name, gender, date_of_birth, class_id, admission_date, address, phone, email, department_id, residence)
+VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12)
+RETURNING student_id";
+
+$params = [$fname, $oname, $lname, $gender, $dob, $class_id, $admission_date, $address, $phone, $email, $department_id, $residence];
+	}
 $result = pg_query_params($conn, $query, $params);
 
 if ($result) {
@@ -197,12 +202,19 @@ ob_end_flush();
                     </select>
     </div>
 	
-	    <div class="col-md-8">
+	    <div class="col-md-6">
         <label>Address</label>
         <textarea name="address" class="form-control" rows="2"></textarea>
     </div>
   
-
+<div class="col-md-6">
+    <label>Residence</label>
+    <select name="residence" class="form-select border" required>
+        <option value="">-- Select Residence --</option>
+        <option value="Day">Day</option>
+        <option value="Boarding">Boarding</option>
+    </select>
+</div>
 
 </div>
 
