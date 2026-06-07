@@ -6,6 +6,7 @@ if (!isset($_SESSION['user'])) {
     exit();
 }
 
+include('auth.php');
 include('db/connect.php');
 include('header.php');
 
