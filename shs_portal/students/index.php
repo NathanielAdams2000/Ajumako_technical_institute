@@ -98,6 +98,16 @@ $result = pg_query_params($conn, $query, $params);
         ?>
     </select>
 </div>
+			<div class="col-md-6 text-end">
+            <a href="export_pdf.php?department_id=<?= $_GET['department_id'] ?? '' ?>" class="btn btn-danger">
+                PDF
+            </a>
+
+            <a href="export_excel.php?department_id=<?= $_GET['department_id'] ?? '' ?>" class="btn btn-success">
+                Excel
+            </a>
+        </div>
+
             <div class="col-md-2">
                 <button class="btn btn-primary w-100" type="submit">Search</button>
             </div>
