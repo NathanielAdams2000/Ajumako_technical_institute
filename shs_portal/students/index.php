@@ -81,7 +81,7 @@ $result = pg_query_params($conn, $query, $params);
 
         <!-- 🔍 Search and Filter -->
         <form class="row mb-4" method="GET">
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <input type="text" name="search" class="form-control" placeholder="Search by name, phone..." value="<?= htmlspecialchars($search) ?>">
             </div>
           <div class="col-md-3">
@@ -99,14 +99,14 @@ $result = pg_query_params($conn, $query, $params);
     </select>
 </div>
 			
-            <div class="col-md-2">
+            <div class="col-md-1">
                 <button class="btn btn-primary w-100" type="submit">Search</button>
             </div>
-            <div class="col-md-2">
+            <div class="col-md-1">
                 <a href="index.php" class="btn btn-secondary w-100">Reset</a>
             </div>
 
-			<div class="col-md-6 text-end">
+			<div class="col-md-2 text-end">
             <a href="export_pdf.php?department_id=<?= $_GET['department_id'] ?? '' ?>" class="btn btn-danger">
                 PDF
             </a>
