@@ -162,7 +162,7 @@ $student = pg_fetch_assoc($result);
 						<div class="col-md-3">
                             <label>Other Name</label>
                             <input type="text" name="other_name" class="form-control"
-                                   value="<?= htmlspecialchars($student['other_name']) ?>" >
+                                   value="<?= htmlspecialchars($student['other_name'] ?? '') ?>">
                         </div>
 						
                         <div class="col-md-3">
