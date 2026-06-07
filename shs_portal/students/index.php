@@ -146,7 +146,6 @@ $result = pg_query_params($conn, $query, $params);
                             <td>{$row['parent_name']}</td>
                             <td>{$row['relationship']}</td>
                             <td>
-                                <td>
     <a href="edit.php?id=<?= $row['student_id'] ?>" class="edit">Edit</a>
 
     <a href="delete.php?student_id=<?= $row['student_id'] ?>"
@@ -154,7 +153,6 @@ $result = pg_query_params($conn, $query, $params);
        onclick="return confirm('Are you sure you want to delete this student?')">
         Delete
     </a>
-</td>
 							</td>
                         </tr>";
                     }
