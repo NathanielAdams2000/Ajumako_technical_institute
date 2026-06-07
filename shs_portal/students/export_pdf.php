@@ -44,4 +44,4 @@ $html .= "</table>";
 $dompdf = new Dompdf();
 $dompdf->loadHtml($html);
 $dompdf->render();
-$dompdf->stream("students.pdf", ["Attachment" => 1]);e
+$dompdf->stream("students.pdf", ["Attachment" => 1]);
