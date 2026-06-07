@@ -98,6 +98,14 @@ $result = pg_query_params($conn, $query, $params);
         ?>
     </select>
 </div>
+			
+            <div class="col-md-2">
+                <button class="btn btn-primary w-100" type="submit">Search</button>
+            </div>
+            <div class="col-md-2">
+                <a href="index.php" class="btn btn-secondary w-100">Reset</a>
+            </div>
+
 			<div class="col-md-6 text-end">
             <a href="export_pdf.php?department_id=<?= $_GET['department_id'] ?? '' ?>" class="btn btn-danger">
                 PDF
@@ -108,12 +116,6 @@ $result = pg_query_params($conn, $query, $params);
             </a>
         </div>
 
-            <div class="col-md-2">
-                <button class="btn btn-primary w-100" type="submit">Search</button>
-            </div>
-            <div class="col-md-2">
-                <a href="index.php" class="btn btn-secondary w-100">Reset</a>
-            </div>
         </form>
 
         <table class="table table-striped table-bordered align-middle">
