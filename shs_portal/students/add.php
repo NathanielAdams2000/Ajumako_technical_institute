@@ -1,13 +1,15 @@
 <?php
 ob_start(); // start output buffering
 session_start();
-include('../db/connect.php');
-include('../header.php');
 
 if (!isset($_SESSION['user'])) {
     header("Location: ../login.php");
     exit();
 }
+
+
+include('../db/connect.php');
+include('../header.php');
 
 // Initialize variables so PHP doesn't complain
 $success = "";
