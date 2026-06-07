@@ -1,5 +1,6 @@
 <?php
 session_start();
+include('auth.php');
 include('../db/connect.php');
 include('../header.php');
 
