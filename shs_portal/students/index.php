@@ -147,8 +147,11 @@ $result = pg_query_params($conn, $query, $params);
                             <td>{$row['relationship']}</td>
                             <td>
                                 <a href='edit.php?id={$row['student_id']}' class='edit'>Edit</a>
-                                <a href='delete.php?id={$row['student_id']}' class='delete' onclick='return confirm(\"Delete this student?\")'>Delete</a>
-                            </td>
+                            <a href="delete.php?student_id=<?= $row['student_id'] ?>"
+   onclick="return confirm('Are you sure you want to delete this student?')">
+   Delete
+</a>
+							</td>
                         </tr>";
                     }
                 } else {
