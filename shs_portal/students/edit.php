@@ -247,7 +247,7 @@ $student = pg_fetch_assoc($result);
                     <textarea name="address" class="form-control" rows="2"><?= htmlspecialchars($student['address']) ?></textarea>
                 </div>
 
-										<div class="col-md-6">
+										<div class="col-md-4">
     <label>Residence</label>
     <select name="residence" class="form-select border" required>
         <option value="">-- Select Residence --</option>
