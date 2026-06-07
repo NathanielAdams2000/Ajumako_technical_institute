@@ -1,7 +1,7 @@
 <?php
 
 // SAFE SESSION ACCESS
-$username = $_SESSION['user'] ?? 'Guest';
+$username = $_SESSION['user'];
 
 $currentPage = basename($_SERVER['PHP_SELF']);
 
