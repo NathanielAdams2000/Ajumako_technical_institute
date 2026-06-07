@@ -1,7 +1,4 @@
 <?php
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}
 
 // SAFE SESSION ACCESS
 $username = $_SESSION['user'] ?? 'Guest';
