@@ -1,6 +1,7 @@
 <?php
 session_start();
 include('../auth.php');
+include('../access.php');
 include('../db/connect.php');
 include('../header.php');
 
@@ -8,7 +9,7 @@ if (!isset($_SESSION['user'])) {
     header("Location: ../login.php");
     exit();
 }
-
+requireRole('admin');
 // Handle search and filter
 $search = isset($_GET['search']) ? trim($_GET['search']) : '';
 $classFilter = $_GET['class_id'] ?? '';
